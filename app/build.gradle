@@ -1,0 +1,29 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 19
+    buildToolsVersion "27.0.2"
+
+    defaultConfig {
+        applicationId "net.surina.soundtouchexample"
+        minSdkVersion 11
+        targetSdkVersion 21
+
+        ndk {
+            moduleName "soundtouch"
+        }
+    }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ["libs"]
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+}

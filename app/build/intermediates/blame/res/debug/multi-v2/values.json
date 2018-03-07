@@ -1,0 +1,83 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/liangqireng/Documents/code/mySTDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/liangqireng/Documents/code/mySTDemo/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "-1,-1",
+                        "startColumns": "-1,-1",
+                        "startOffsets": "-1,-1"
+                    },
+                    "to": {
+                        "startLines": "4,7",
+                        "startColumns": "4,4",
+                        "startOffsets": "154,242",
+                        "endLines": "6,9",
+                        "endColumns": "12,12",
+                        "endOffsets": "237,309"
+                    }
+                },
+                {
+                    "source": "/Users/liangqireng/Documents/code/mySTDemo/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "3,-1",
+                        "startColumns": "4,-1",
+                        "startOffsets": "56,-1",
+                        "endColumns": "45,-1",
+                        "endOffsets": "97,-1"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,101",
+                        "endColumns": "45,52",
+                        "endOffsets": "96,149"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values/values.xml",
+            "map": [
+                {
+                    "source": "/Users/liangqireng/Documents/code/JavaSTDemo/app/src/main/res/values/strings.xml",
+                    "from": {
+                        "startLines": "3,4",
+                        "startColumns": "4,4",
+                        "startOffsets": "56,102",
+                        "endColumns": "45,52",
+                        "endOffsets": "97,150"
+                    },
+                    "to": {
+                        "startLines": "2,3",
+                        "startColumns": "4,4",
+                        "startOffsets": "55,101",
+                        "endColumns": "45,52",
+                        "endOffsets": "96,149"
+                    }
+                },
+                {
+                    "source": "/Users/liangqireng/Documents/code/JavaSTDemo/app/src/main/res/values/styles.xml",
+                    "from": {
+                        "startLines": "6,15",
+                        "startColumns": "4,4",
+                        "startOffsets": "186,515",
+                        "endLines": "12,17",
+                        "endColumns": "12,12",
+                        "endOffsets": "477,670"
+                    },
+                    "to": {
+                        "startLines": "4,11",
+                        "startColumns": "4,4",
+                        "startOffsets": "154,450",
+                        "endLines": "10,13",
+                        "endColumns": "12,12",
+                        "endOffsets": "445,605"
+                    }
+                }
+            ]
+        }
+    ]
+}
