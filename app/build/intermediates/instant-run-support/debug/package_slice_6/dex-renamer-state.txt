@@ -1,4 +1,4 @@
-#Tue Mar 06 14:55:43 CST 2018
-base.0=/Users/liangqireng/Documents/code/mySTDemo/app/build/intermediates/transforms/dexMerger/debug/7
+#Wed Mar 07 23:10:49 CST 2018
+base.0=/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/transforms/dexMerger/debug/26
 path.0=classes.dex
 renamed.0=classes.dex

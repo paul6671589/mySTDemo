@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Wed Mar 07 14:28:25 CST 2018
+#Thu Mar 08 19:36:15 CST 2018
 1.base=/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/transforms/stripDebugSymbol/debug/0
 2.path=lib/armeabi-v7a/libsoundtouch.so
 0.baseType=DIRECTORY
@@ -14,6 +14,6 @@ count=4
 0.path=classes.dex
 3.base=/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/transforms/stripDebugSymbol/debug/0
 0.set=DEX
-0.base=/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/transforms/dexMerger/debug/19
+0.base=/Users/liangqireng/Documents/code/JavaSTDemo/app/build/intermediates/transforms/dexMerger/debug/38
 2.baseType=DIRECTORY
 1.path=lib/arm64-v8a/libsoundtouch.so

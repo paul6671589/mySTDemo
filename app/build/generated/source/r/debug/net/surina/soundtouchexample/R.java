@@ -18,13 +18,15 @@ public final class R {
     public static final int checkBoxPlay=0x7f020003;
     public static final int editTextOutFileName=0x7f020004;
     public static final int editTextPitch=0x7f020005;
-    public static final int editTextSrcFileName=0x7f020006;
-    public static final int editTextTempo=0x7f020007;
-    public static final int linearLayout1=0x7f020008;
-    public static final int scrollView1=0x7f020009;
-    public static final int tableRow1=0x7f02000a;
-    public static final int tableRow2=0x7f02000b;
-    public static final int textViewResult=0x7f02000c;
+    public static final int editTextSpeed=0x7f020006;
+    public static final int editTextSrcFileName=0x7f020007;
+    public static final int editTextTempo=0x7f020008;
+    public static final int linearLayout1=0x7f020009;
+    public static final int scrollView1=0x7f02000a;
+    public static final int tableRow1=0x7f02000b;
+    public static final int tableRow2=0x7f02000c;
+    public static final int tableRow3=0x7f02000d;
+    public static final int textViewResult=0x7f02000e;
   }
   public static final class layout {
     public static final int activity_example=0x7f030000;

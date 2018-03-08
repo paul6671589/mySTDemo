@@ -3,7 +3,8 @@
     android:id="@+id/linearLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+              android:background="#202020">
 
     <TableLayout
         android:layout_width="fill_parent"
@@ -17,16 +18,20 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Tempo %:"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="Tempo(%)(50~200):"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF" />
 
             <EditText
                 android:id="@+id/editTextTempo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="5"
                 android:inputType="text"
-                android:text="100" >
+                android:text="100"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF" >
             </EditText>
         </TableRow>
 
@@ -38,16 +43,45 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Pitch half-steps:"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:text="Pitch semi-tone(-12.0~12.0):"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF" />
 
             <EditText
                 android:id="@+id/editTextPitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:ems="5"
                 android:inputType="text"
-                android:text="-0.318" >
+                android:text="-0.318"
+                android:textSize="13dp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF" >
+            </EditText>
+        </TableRow>
+
+        <TableRow
+                android:id="@+id/tableRow3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" >
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Speed(50~200):"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFFFF" />
+
+            <EditText
+                    android:id="@+id/editTextSpeed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:inputType="text"
+                    android:text="100"
+                    android:textSize="13dp"
+                    android:textStyle="bold"
+                    android:textColor="#FFFFFFFF" >
             </EditText>
         </TableRow>
     </TableLayout>
@@ -61,21 +95,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Source file:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF" />
 
         <EditText
             android:id="@+id/editTextSrcFileName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="/sdcard/Download/test.wav"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF" />
                
 
         <Button
             android:id="@+id/buttonSelectSrcFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select" />
+            android:text="Select"
+            android:textSize="10dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <LinearLayout
@@ -86,20 +127,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Output file:"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF" />
 
         <EditText
             android:id="@+id/editTextOutFileName"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="/sdcard/Download/soundtouch-output.wav"
-            android:layout_weight="1" />
+            android:layout_weight="1"
+            android:textSize="10dp"
+            android:textStyle="bold"
+            android:textColor="#FFFFFFFF" />
 
         <Button
             android:id="@+id/buttonSelectOutFile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select" />
+            android:text="Select"
+            android:textSize="10dp"
+            android:textStyle="bold" />
     </LinearLayout>
 
     <CheckBox
@@ -107,21 +155,28 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Play the output file after processing!" />
+        android:text="Play the output file after processing!"
+        android:textSize="13dp"
+        android:textStyle="bold"
+        android:textColor="#FFFFFFFF" />
 
     <Button
         android:id="@+id/buttonProcess"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Process file!" />
+        android:text="Process"
+        android:textSize="10dp"
+        android:textStyle="bold" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Status console:"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+        android:layout_marginTop="18dp"
+        android:text="Status:"
+        android:textStyle="bold"
+        android:textSize="13dp"
+        android:textColor="#FFFFFFFF" />
 
     <ScrollView
         android:id="@+id/scrollView1"
@@ -132,7 +187,10 @@
         android:id="@+id/textViewResult"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
-        android:text="@string/hello_world" />
+        android:text="@string/hello_world"
+        android:textStyle="bold"
+        android:textSize="10dp"
+        android:textColor="#FFFFFFFF" />
 
 
     </ScrollView>

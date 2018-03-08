@@ -39,6 +39,7 @@ public class ExampleActivity extends Activity implements OnClickListener
 	EditText editOutputFile = null;
 	EditText editTempo = null;
 	EditText editPitch = null;
+	EditText editSpeed = null;
 	CheckBox checkBoxPlay = null;
 	
 	StringBuilder consoleText = new StringBuilder();
@@ -57,6 +58,7 @@ public class ExampleActivity extends Activity implements OnClickListener
 
 		editTempo = (EditText)findViewById(R.id.editTextTempo);
 		editPitch = (EditText)findViewById(R.id.editTextPitch);
+		editSpeed = (EditText)findViewById(R.id.editTextSpeed);
 		
 		Button buttonFileSrc = (Button)findViewById(R.id.buttonSelectSrcFile);
 		Button buttonFileOutput = (Button)findViewById(R.id.buttonSelectOutFile);
@@ -143,9 +145,9 @@ public class ExampleActivity extends Activity implements OnClickListener
 			String outFileName;
 			float tempo;
 			float pitch;
+			float speed;
 		}
 
-		
 		
 		/// Function that does the SoundTouch processing
 		public final long doSoundTouchProcessing(Parameters params) 
@@ -154,6 +156,7 @@ public class ExampleActivity extends Activity implements OnClickListener
 			SoundTouch st = new SoundTouch();
 			st.setTempo(params.tempo);
 			st.setPitchSemiTones(params.pitch);
+			st.setSpeed(params.speed);
 			Log.i("SoundTouch", "process file " + params.inFileName);
 			long startTime = System.currentTimeMillis();
 			int res = st.processFile(params.inFileName, params.outFileName);
@@ -202,11 +205,13 @@ public class ExampleActivity extends Activity implements OnClickListener
 			params.outFileName = editOutputFile.getText().toString();
 			params.tempo = 0.01f * Float.parseFloat(editTempo.getText().toString());
 			params.pitch = Float.parseFloat(editPitch.getText().toString());
+			params.speed = 0.01f * Float.parseFloat(editSpeed.getText().toString());
 
 			// update UI about status
 			appendToConsole("Process audio file :" + params.inFileName +" => " + params.outFileName);
 			appendToConsole("Tempo = " + params.tempo);
 			appendToConsole("Pitch adjust = " + params.pitch);
+			appendToConsole("Speed = " + params.speed);
 			
 			Toast.makeText(this, "Starting to process file " + params.inFileName + "...", Toast.LENGTH_SHORT).show();
 
