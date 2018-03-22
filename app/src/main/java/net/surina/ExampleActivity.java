@@ -27,23 +27,38 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.SeekBar;
+import android.text.TextWatcher;
+import android.text.Editable;
+
+import java.io.IOException;
+import android.media.MediaPlayer;
 
 public class ExampleActivity extends Activity implements OnClickListener 
 {
-	TextView textViewConsole = null;
-	EditText editSourceFile = null;
-	EditText editOutputFile = null;
-	EditText editTempo = null;
-	EditText editPitch = null;
-	EditText editSpeed = null;
-	CheckBox checkBoxPlay = null;
+	private TextView textViewConsole = null;
+	private EditText editSourceFile = null;
+	private EditText editOutputFile = null;
+	private EditText editTempo = null;
+	private EditText editPitch = null;
+	private EditText editSpeed = null;
+	private SeekBar  mSeekBar1 = null;
+	private SeekBar  mSeekBar2 = null;
+	private SeekBar  mSeekBar3 = null;
+	private Button   mBtnPlaySource = null;
+	private Button   mBtnProcPlay = null;
+	private Button   mBtnProcess = null;
 	
 	StringBuilder consoleText = new StringBuilder();
 
+	// MediaPlayer
+	MediaPlayer mPlayer = null;
+
+	// 是否播放
+	private boolean mPlaying = false;
 	
 	/// Called when the activity is created
 	@Override
@@ -59,15 +74,142 @@ public class ExampleActivity extends Activity implements OnClickListener
 		editTempo = (EditText)findViewById(R.id.editTextTempo);
 		editPitch = (EditText)findViewById(R.id.editTextPitch);
 		editSpeed = (EditText)findViewById(R.id.editTextSpeed);
-		
-		Button buttonFileSrc = (Button)findViewById(R.id.buttonSelectSrcFile);
-		Button buttonFileOutput = (Button)findViewById(R.id.buttonSelectOutFile);
-		Button buttonProcess = (Button)findViewById(R.id.buttonProcess);
-		buttonFileSrc.setOnClickListener(this);
-		buttonFileOutput.setOnClickListener(this);
-		buttonProcess.setOnClickListener(this);
 
-		checkBoxPlay = (CheckBox)findViewById(R.id.checkBoxPlay);
+		mSeekBar1 = (SeekBar)findViewById(R.id.seekBar1);
+		mSeekBar2 = (SeekBar)findViewById(R.id.seekBar2);
+		mSeekBar3 = (SeekBar)findViewById(R.id.seekBar3);
+
+		mBtnPlaySource = (Button)findViewById(R.id.btnPlaySource);
+		mBtnProcPlay = (Button)findViewById(R.id.btnProcPlay);
+		mBtnProcess = (Button)findViewById(R.id.buttonProcess);
+		mBtnPlaySource.setOnClickListener(this);
+		mBtnProcPlay.setOnClickListener(this);
+		mBtnProcess.setOnClickListener(this);
+
+		mPlayer = new MediaPlayer();
+
+		editTempo.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				try {
+					int value = Integer.valueOf(editTempo.getText().toString()).intValue();
+					if (value >= 50 || value <= 200) {
+						mSeekBar1.setProgress(value - 50);
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		editPitch.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				try {
+					float value = Float.valueOf(editPitch.getText().toString()).intValue();
+					if (value >= -12.0f || value <= 12.0f) {
+						mSeekBar2.setProgress((int)((value + 12.0f) * 100));
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		editSpeed.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+				try {
+					int value = Integer.valueOf(editSpeed.getText().toString()).intValue();
+					if (value >= 50 || value <= 200) {
+						mSeekBar3.setProgress(value - 50);
+					}
+				} catch (NumberFormatException e) {
+					e.printStackTrace();
+				}
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+
+			}
+		});
+
+		mSeekBar1.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				editTempo.setText(String.valueOf(progress + 50));
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "按住seekBar", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "放开seekBar", Toast.LENGTH_SHORT).show();
+			}
+		});
+		mSeekBar2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				float value = (float)progress/100.0f - 12.0f;
+				String str = String.format("%.2f", value);
+				editPitch.setText(str);
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "按住seekBar", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "放开seekBar", Toast.LENGTH_SHORT).show();
+			}
+		});
+		mSeekBar3.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+			@Override
+			public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+				editSpeed.setText(String.valueOf(progress + 50));
+			}
+
+			@Override
+			public void onStartTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "按住seekBar", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onStopTrackingTouch(SeekBar seekBar) {
+				//Toast.makeText(ExampleActivity.this, "放开seekBar", Toast.LENGTH_SHORT).show();
+			}
+		});
 
 		// Check soundtouch library presence & version
 		checkLibVersion();
@@ -99,7 +241,26 @@ public class ExampleActivity extends Activity implements OnClickListener
 		appendToConsole("SoundTouch native library version = " + ver);
 	}
 
+	private void initMediaPlayer() {
+		String inFileName = editSourceFile.getText().toString();
+		try {
+			mPlayer.setDataSource(inFileName);
+			mPlayer.prepare();
+			mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+				@Override
+				public void onCompletion(MediaPlayer mediaPlayer) {
+					mBtnPlaySource.setText("Play Source");
+				}
+			});
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 
+	private class PlayProcThread extends Thread {
+		public void run() {
+		}
+	}
 
 	/// Button click handler
 	@Override
@@ -107,20 +268,31 @@ public class ExampleActivity extends Activity implements OnClickListener
 	{
 		switch (arg0.getId())
 		{
-			case R.id.buttonSelectSrcFile:
-			case R.id.buttonSelectOutFile:
-				// one of the file select buttons clicked ... we've not just implemented them ;-)
-				Toast.makeText(this, "File selector not implemented, sorry! Enter the file path manually ;-)", Toast.LENGTH_LONG).show();
+			case R.id.btnPlaySource:
+				if (!mPlaying) {
+					initMediaPlayer();
+					mPlayer.start();
+					mBtnPlaySource.setText("Stop Play Source");
+					mPlaying = true;
+				} else {
+					mPlayer.stop();
+					mPlayer.reset();
+					mBtnPlaySource.setText("Play Source");
+					mPlaying = false;
+				}
 				break;
-				
+			case R.id.btnProcPlay:
+				break;
 			case R.id.buttonProcess:
 				// button "process" pushed
 				process();
-				break;						
+				break;
+			default:
+				break;
 		}
 		
 	}
-	
+
 	
 	/// Play audio file
 	protected void playWavFile(String fileName)
@@ -171,12 +343,8 @@ public class ExampleActivity extends Activity implements OnClickListener
 				appendToConsole("Failure: " + err);
 				return -1L;
 			}
-			
-			// Play file if so is desirable
-			if (checkBoxPlay.isChecked())
-			{
-				playWavFile(params.outFileName);
-			}
+
+			playWavFile(params.outFileName);
 			return 0L;
 		}
 
@@ -201,7 +369,8 @@ public class ExampleActivity extends Activity implements OnClickListener
 			ProcessTask task = new ProcessTask();
 			ProcessTask.Parameters params = task.new Parameters();
 			// parse processing parameters
-			params.inFileName = editSourceFile.getText().toString();
+			//params.inFileName = editSourceFile.getText().toString();
+			params.inFileName = "/sdcard/Download/test.mp3";
 			params.outFileName = editOutputFile.getText().toString();
 			params.tempo = 0.01f * Float.parseFloat(editTempo.getText().toString());
 			params.pitch = Float.parseFloat(editPitch.getText().toString());
